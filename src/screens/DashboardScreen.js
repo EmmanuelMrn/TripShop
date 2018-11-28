@@ -18,6 +18,13 @@ import RecommendedCardItem from '../components/cardItem';
 //import Dashboard from '../components/dashboard';
 
 export default class DashboardContainer extends Component {
+  static navigationOptions = {
+    drawerLabel: 'Dashboard',
+    drawerIcon: () => (
+      <Icon name="md-menu" style={{ color: 'red', marginRight: 15 }} />
+    ),
+  };
+
   render() {
     const { container, headerStyle } = styles;
     return (
@@ -27,7 +34,7 @@ export default class DashboardContainer extends Component {
       <Container>
         <Header style={headerStyle}>
           <Left style={{ flexDirection: 'row' }}>
-            <Icon name="md-menu" style={{ color: 'white', marginRight: 15 }} onPress={() => this.props.navigation.navigate('DrawerOpen')} />
+            <Icon name="md-menu" style={{ color: 'white', marginRight: 15 }} onPress={() => this.props.navigation.openDrawer()} />
             <FAIcon name="amazon" style={{ fontSize: 32, color: 'white' }} />
           </Left>
           <Right>
