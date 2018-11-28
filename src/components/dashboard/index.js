@@ -7,8 +7,8 @@ class Dashboard extends Component {
     return (
       <View style={container}>
         <StatusBar
-          backgroundColor="#4f6d7a"
-          barStyle="light-content"
+          backgroundColor="#EEE"
+          barStyle="dark-content"
         />
         <Text style={welcome}>Welcome to React Native!</Text>
       </View>
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#EEE',
   },
   welcome: {
     fontSize: 20,
