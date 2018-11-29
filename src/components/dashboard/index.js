@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
-import { Card, CardItem } from 'native-base';
+import { Card } from 'native-base';
 import RecommendedCardItem from '../../components/cardItem';
 
 const styles = StyleSheet.create({

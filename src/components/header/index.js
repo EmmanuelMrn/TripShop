@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, Image } from 'react-native';
+import { StyleSheet, StatusBar, Image, Text, View } from 'react-native';
 import { Header, Left, Right, Icon } from 'native-base';
 
 const styles = StyleSheet.create({
@@ -27,12 +27,22 @@ const styles = StyleSheet.create({
         height: 30,
         width: 30,
     },
+    textTitle: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    titleContainer: {
+        alignItems: 'center',
+        paddingLeft: '25%',
+        flexDirection: 'row',
+    },
   });
 
   
 class HeaderComponent extends Component<Props> {
   render() {
-    const { headerStyle, iconMenu, vikingLogo, iconCart, direction } = styles;
+    const { headerStyle, iconMenu, vikingLogo, iconCart, direction, textTitle, titleContainer } = styles;
     return (
         <Header style={headerStyle}>
             <StatusBar
@@ -44,8 +54,11 @@ class HeaderComponent extends Component<Props> {
                 <Icon name="md-menu" style={iconMenu} onPress={() => this.props.navigation.openDrawer()} />
                 <Image style={vikingLogo} source={require('../../images/vikinglogo.png')} />
             </Left>
+            <View style={titleContainer}>
+                <Text style={textTitle}>{this.props.title}</Text>
+            </View>
             <Right>
-                <Icon name="md-cart" style={iconCart} />
+                <Icon name="md-cart" style={iconCart} onPress={() => this.props.navigation.navigate('Cart')} />
             </Right>
         </Header>
     );
