@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ImageBackground } from 'react-native';
 import { Container, Content, Text, List, ListItem } from 'native-base';
+import FAIcon from 'react-native-vector-icons/FontAwesome';
 
 const routes = ['Inicio', 'Mi cuenta', 'Mis pedidos', 'Favoritos', 'Ajustes', 'Administrador'];
 
@@ -10,18 +11,12 @@ export default class SideBar extends Component {
       <Container>
         <Content>
           <ImageBackground
-            source={require('../../images/swiper_2.jpg')} 
+            source={require('../../images/backDrawer.jpg')} 
             style={{
               height: 120,
               alignSelf: 'stretch',
-              justifyContent: 'center',
-              alignItems: 'center'
             }}>
-            <ImageBackground
-              square
-              style={{ height: 80, width: 70 }}
-              source={require('../../images/recommended_1.jpg')} 
-            />
+            <FAIcon name="user-circle" style={{ fontSize: 52, color: 'white', padding: '5%' }} />
           </ImageBackground>
           <List
             dataArray={routes}

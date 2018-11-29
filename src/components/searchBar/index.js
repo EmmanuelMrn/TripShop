@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         right: 0,
         top: 70,
         height: 70,
-        backgroundColor: '#3a455c',
+        backgroundColor: '#607D8B',
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 5,

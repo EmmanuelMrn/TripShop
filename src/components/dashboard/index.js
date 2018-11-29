@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { Card, CardItem } from 'native-base';
 import RecommendedCardItem from '../../components/cardItem';
 
@@ -11,18 +11,26 @@ const styles = StyleSheet.create({
     cardItemStyle: {
       borderBottomWidth: 1,
       borderBottomColor: '#dee0e2',
+      alignItems: 'center',
+      flex: 1,
+      height: 50,
+      justifyContent: 'center',
+    },
+    textStyle: {
+      fontSize: 18,
+      fontWeight: 'bold',
     },
   });
 
   
 class DashboardComponent extends Component {
   render() {
-    const { cardStyle, cardItemStyle } = styles;
+    const { cardStyle, cardItemStyle, textStyle } = styles;
     return (
       <Card style={cardStyle}>
-        <CardItem header style={cardItemStyle}>
-            <Text>Recomendaciones</Text>
-        </CardItem>
+        <View header style={cardItemStyle}>
+            <Text style={textStyle}>Lo más vendido</Text>
+        </View>
         <RecommendedCardItem
           itemName='You can heal your life'
           itemCreator='Louise Hay'
