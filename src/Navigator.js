@@ -1,42 +1,26 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { Easing, Animated } from 'react-native';
+import { createAppContainer, createDrawerNavigator } from 'react-navigation';
 import DashboardScreen from './screens/DashboardScreen';
+import DrawerScreen from './screens/DrawerScreen';
+import AdminScreen from './screens/AdminScreen';
+import FavoriteScreen from './screens/FavoritesScreen';
+import ItemScreen from './screens/ItemScreen';
+import MyAccountScreen from './screens/MyAccountScreen';
+import MyOrdersScreen from './screens/MyOrdersScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import Sidebar from './components/sidebar';
 
-const AppNavigator = createStackNavigator({
-  Dashboard: { screen: DashboardScreen },
+const AppNavigator = createDrawerNavigator({
+  Inicio: { screen: DashboardScreen },
+  'Mi cuenta': { screen: MyAccountScreen },
+  'Mis pedidos': { screen: MyOrdersScreen },
+  Favoritos: { screen: FavoriteScreen },
+  Ajustes: { screen: SettingsScreen },
+  Administrador: { screen: AdminScreen },
+  Item: { screen: ItemScreen },
+  Drawer: { screen: DrawerScreen },
 },
 {
-  initialRouteName: 'Dashboard',
-  headerMode: 'none',
-  navigationOptions: {
-    gesturesEnabled: false,
-  },
-  transitionConfig: () => ({
-    transitionSpec: {
-      duration: 300,
-      easing: Easing.out(Easing.poly(4)),
-      timing: Animated.timing,
-    },
-    screenInterpolator: sceneProps => {
-      const { layout, position, scene } = sceneProps;
-      const { index } = scene;
-
-      const thisSceneIndex = scene.index;
-      const width = layout.initWidth;
-
-      const opacity = position.interpolate({
-        inputRange: [index - 1, index - 0.99, index],
-        outputRange: [0, 1, 1],
-      });
-
-      const translateX = position.interpolate({
-        inputRange: [thisSceneIndex - 1, thisSceneIndex],
-        outputRange: [width, 0],
-      });
-
-      return { opacity, transform: [{ translateX }] };
-    },
-  }),
+  contentComponent: Sidebar
 });
 
 export default createAppContainer(AppNavigator);
