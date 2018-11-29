@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         height: 90,
         width: 60,
     },
-    textItemCreator: {
+    textItemColor: {
         color: 'grey',
         fontSize: 11,
     },
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#c4402f',
     },
-    textYouSaveStyle: {
+    textItemSize: {
         color: 'grey',
         fontWeight: '300',
         fontSize: 11,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 
 class RecommendedCardItem extends Component {
  render() {
-  const { imageStyle, rightStyle, textItemCreator, textItemPrice, textYouSaveStyle } = styles;
+  const { imageStyle, rightStyle, textItemColor, textItemPrice, textItemSize } = styles;
     return (
         <CardItem>
             <View>
@@ -45,11 +45,11 @@ class RecommendedCardItem extends Component {
             </View>
             <Right style={rightStyle}>
                 <Text>{this.props.itemName}</Text>
-                <Text style={textItemCreator}>{this.props.itemCreator}</Text>
+                <Text style={textItemColor}>{this.props.itemColor}</Text>
                 <Text style={textItemPrice}>{this.props.itemPrice}</Text>
-                <Text><Text style={textYouSaveStyle}>
-                    You save
-                </Text> ${this.props.savings}</Text>
+                <Text><Text style={textItemSize}>
+                    Size 
+                </Text>{this.props.itemSize}</Text>
 
                 <StarRating
                     disabled={true}

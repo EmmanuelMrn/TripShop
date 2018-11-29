@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { StyleSheet, StatusBar, Image, View, Text } from 'react-native';
 import { Header, Left, Icon, Right } from 'native-base';
 
@@ -35,6 +36,15 @@ const styles = StyleSheet.create({
   });
 
 export default class CartContainer extends Component {
+    state = {
+        playeras: []
+    }
+
+    componentWillMount() {
+        axios.get('https://rallycoding.herokuapp.com/api/music_albums')
+        .then(response => this.setState({ playeras: response.data }));
+    }
+
    render() {
     const { headerStyle, iconMenu, vikingLogo, direction, textTitle } = styles;
     return (

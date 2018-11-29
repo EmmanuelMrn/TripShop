@@ -4,6 +4,7 @@ import { View, Button } from 'react-native';
 import firebase from '@firebase/app';
 import LoginForm from '../components/login';
 import HeaderComponent from '../components/header';
+import AdminComponent from '../components/admin';
 import Spinner from '../components/common/Spinner';
 
 class AdminContainer extends Component {
@@ -35,6 +36,7 @@ class AdminContainer extends Component {
           case true:
             return (
                 <View>
+                    <AdminComponent />
                     <Button title="Log out" onPress={() => firebase.auth().signOut()} />
                 </View>
             );
