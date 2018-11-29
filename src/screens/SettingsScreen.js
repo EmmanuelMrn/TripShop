@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import HeaderComponent from '../components/header';
 
 export default class SettingsContainer extends Component {
    render() {
     return (
         <View>
-            <Text> Settings Screen</Text>
-            <Button onPress={() => this.props.navigation.goBack()} title="Go back home" />
+            <HeaderComponent navigation={this.props.navigation} title={'Ajustes'} />
+            <Text>Settings Screen</Text>
         </View>
         
     );
