@@ -1,122 +1,36 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { 
   Container,
   Content,
-  Header,
-  Left,
-  Right,
-  Icon,
-  Item,
-  Input,
-  Card,
-  CardItem
 } from 'native-base';
-import FAIcon from 'react-native-vector-icons/FontAwesome';
-import Swiper from 'react-native-swiper';
-import RecommendedCardItem from '../components/cardItem';
-//import Dashboard from '../components/dashboard';
+import HeaderComponent from '../components/header';
+import SearchComponent from '../components/searchBar';
+import SwiperComponent from '../components/swiper';
+import DashboardComponent from '../components/dashboard';
+
+const styles = StyleSheet.create({
+  contentStyles: {
+    backgroundColor: '#d5d5d6',
+    marginTop: '19%',
+  },
+});
+
 
 export default class DashboardContainer extends Component {
-  static navigationOptions = {
-    drawerLabel: 'Inicio',
-    drawerIcon: () => (
-      <Icon name="md-menu" style={{ color: 'red', marginRight: 15 }} />
-    ),
-  };
-
   render() {
-    const { container, headerStyle } = styles;
+    const { contentStyles } = styles;
     return (
-      // <View style={container}>
-      //   <Dashboard />
-      // </View>
       <Container>
-        <Header style={headerStyle}>
-          <Left style={{ flexDirection: 'row' }}>
-            <Icon name="md-menu" style={{ color: 'white', marginRight: 15 }} onPress={() => this.props.navigation.openDrawer()} />
-            <FAIcon name="amazon" style={{ fontSize: 32, color: 'white' }} />
-          </Left>
-          <Right>
-            <Icon name="md-cart" style={{ color: 'white' }} />
-          </Right>
-        </Header>
-        <View style={{ position: 'absolute', left: 0, right: 0, top: 70, height: 70, backgroundColor: '#3a455c', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 5 }}>
-          <View style={{ flex: 1, height: '100%', marginLeft: 5, justifyContent: 'center' }}>
-            <Item style={{ backgroundColor: 'white', paddingHorizontal: 10, borderRadius: 4 }}>
-              <Icon name="search" style={{ fontSize: 20, paddingTop: 5 }} />
-              <Input placeholder="¿Qué buscas?" />
-            </Item>
-          </View>
-        </View>
+        <HeaderComponent navigation={this.props.navigation} />
+        <SearchComponent />
 
-        <Content style={{ backgroundColor: '#d5d5d6', marginTop: 70 }}>
-          <Swiper autoplay={true} style={{ height: 100 }}>
-            <View style={{ flex: 1 }}>
-              <Image
-                style={{ flex: 1, height: null, width: null, resizeMode: 'contain' }}
-                source={require('../images/swiper_2.jpg')} 
-              />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Image
-                style={{ flex: 1, height: null, width: null, resizeMode: 'contain' }}
-                source={require('../images/swiper_3.jpg')} 
-              />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Image
-                style={{ flex: 1, height: null, width: null, resizeMode: 'contain' }}
-                source={require('../images/swiper_2.jpg')} 
-              />
-            </View>
-          </Swiper>
-          <Card style={{ marginLeft: 5, marginRight: 5 }}>
-          <CardItem header style={{ borderBottomWidth: 1, borderBottomColor: '#dee0e2' }}>
-              <Text>Recomendaciones</Text>
-          </CardItem>
-          <RecommendedCardItem
-            itemName="You can heal your life"
-            itemCreator="Louise Hay"
-            itemPrice="$10"
-            savings="2.5"
-            imageUri={require("../images/recommended_1.jpg")}
-            rating={5}
-          />
-          <RecommendedCardItem
-            itemName="Uncharted 4"
-            itemCreator="Sony"
-            itemPrice="$19.99"
-            savings="17"
-            imageUri={require("../images/recommended_2.jpg")}
-            rating={5}
-          />
-          <RecommendedCardItem
-            itemName="Ea UFC 3"
-            itemCreator="Ea Sports"
-            itemPrice="$44"
-            savings="6"
-            imageUri={require("../images/recommended_3.jpg")}
-            rating={3}
-          />
-      </Card>
+        <Content style={contentStyles}>
+          <SwiperComponent />
+
+          <DashboardComponent />
         </Content>
       </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#EEE',
-  },
-  headerStyle: {
-    backgroundColor: '#3a455c',
-    height: 70,
-    borderBottomColor: '#757575',
-    borderBottomWidth: 0.5,
-  },
-});
