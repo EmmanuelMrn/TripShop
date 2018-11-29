@@ -1,34 +1,56 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
+import { Card, CardItem } from 'native-base';
+import RecommendedCardItem from '../../components/cardItem';
 
-class Dashboard extends Component {
+const styles = StyleSheet.create({
+    cardStyle: {
+      marginLeft: 5,
+      marginRight: 5,
+      },
+    cardItemStyle: {
+      borderBottomWidth: 1,
+      borderBottomColor: '#dee0e2',
+    },
+  });
+
+  
+class DashboardComponent extends Component {
   render() {
-    const { container, welcome } = styles;
+    const { cardStyle, cardItemStyle } = styles;
     return (
-      <View style={container}>
-        <StatusBar
-          backgroundColor="#EEE"
-          barStyle="dark-content"
+      <Card style={cardStyle}>
+        <CardItem header style={cardItemStyle}>
+            <Text>Recomendaciones</Text>
+        </CardItem>
+        <RecommendedCardItem
+          itemName='You can heal your life'
+          itemCreator='Louise Hay'
+          itemPrice='$10'
+          savings='2.5'
+          imageUri={require('../../images/recommended_1.jpg')}
+          rating={5}
         />
-        <Text style={welcome}>Welcome to React Native!</Text>
-      </View>
+        <RecommendedCardItem
+          itemName='Uncharted 4'
+          itemCreator='Sony'
+          itemPrice='$19.99'
+          savings='17'
+          imageUri={require('../../images/recommended_2.jpg')}
+          rating={5}
+        />
+        <RecommendedCardItem
+          itemName='Ea UFC 3'
+          itemCreator='Ea Sports'
+          itemPrice='$44'
+          savings='6'
+          imageUri={require('../../images/recommended_3.jpg')}
+          rating={3}
+        />
+      </Card>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#EEE',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'black',
-  },
-});
+export default DashboardComponent;
 
-export default Dashboard;
