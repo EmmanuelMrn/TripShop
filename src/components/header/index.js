@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar, Image } from 'react-native';
 import { Header, Left, Right, Icon } from 'native-base';
-  import FAIcon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
     headerStyle: {
-        backgroundColor: '#3a455c',
+        backgroundColor: '#607D8B',
         height: 70,
-        borderBottomColor: '#757575',
-        borderBottomWidth: 0.5,
+        borderBottomColor: '#fff',
+        borderBottomWidth: 0.3,
       },
     iconMenu: {
         color: 'white',
@@ -24,17 +23,26 @@ const styles = StyleSheet.create({
     iconCart: {
         color: 'white',
     },
+    vikingLogo: {
+        height: 30,
+        width: 30,
+    },
   });
 
   
 class HeaderComponent extends Component<Props> {
   render() {
-    const { headerStyle, iconMenu, iconAmazon, iconCart, direction } = styles;
+    const { headerStyle, iconMenu, vikingLogo, iconCart, direction } = styles;
     return (
         <Header style={headerStyle}>
+            <StatusBar
+                translucen
+                backgroundColor='#607D8B'
+                barStyle="light-content"
+            />
             <Left style={direction}>
                 <Icon name="md-menu" style={iconMenu} onPress={() => this.props.navigation.openDrawer()} />
-                <FAIcon name="amazon" style={iconAmazon} />
+                <Image style={vikingLogo} source={require('../../images/vikinglogo.png')} />
             </Left>
             <Right>
                 <Icon name="md-cart" style={iconCart} />

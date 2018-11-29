@@ -4,17 +4,17 @@ import Swiper from 'react-native-swiper';
 
 const styles = StyleSheet.create({
     swiperStyle: {
-        height: 100,
+        height: 120,
       },
     flexStyle: {
         flex: 1,
         paddingHorizontal: '3%',
+        paddingVertical: '2%',
     },
     imageStyle: {
         flex: 1,
         height: null,
         width: null,
-        resizeMode: 'contain',
         borderRadius: 6,
     },
   });
@@ -28,19 +28,19 @@ class SwiperComponent extends Component {
             <View style={flexStyle}>
               <Image
                 style={imageStyle}
-                source={require('../../images/swiper_2.jpg')} 
-              />
-            </View>
-            <View style={flexStyle}>
-              <Image
-                style={imageStyle}
-                source={require('../../images/swiper_3.jpg')}
+                source={require('../../images/swiper_1.png')} 
               />
             </View>
             <View style={flexStyle}>
               <Image
                 style={imageStyle}
                 source={require('../../images/swiper_2.jpg')}
+              />
+            </View>
+            <View style={flexStyle}>
+              <Image
+                style={imageStyle}
+                source={require('../../images/swiper_3.jpg')}
               />
             </View>
           </Swiper>
