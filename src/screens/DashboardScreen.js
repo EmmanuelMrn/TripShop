@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { 
   Container,
   Content,
@@ -19,7 +19,7 @@ import RecommendedCardItem from '../components/cardItem';
 
 export default class DashboardContainer extends Component {
   static navigationOptions = {
-    drawerLabel: 'Dashboard',
+    drawerLabel: 'Inicio',
     drawerIcon: () => (
       <Icon name="md-menu" style={{ color: 'red', marginRight: 15 }} />
     ),
@@ -42,30 +42,15 @@ export default class DashboardContainer extends Component {
           </Right>
         </Header>
         <View style={{ position: 'absolute', left: 0, right: 0, top: 70, height: 70, backgroundColor: '#3a455c', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 5 }}>
-          <TouchableOpacity>
-            <View style={{ width: 100, backgroundColor: '#e7e7eb', height: 50, borderRadius: 4, padding: 10 }}>
-              <Text style={{ fontSize: 12 }}>Shop by</Text>
-              <Text style={{ fontWeight: 'bold' }}>Category</Text>
-            </View>
-          </TouchableOpacity>
-
           <View style={{ flex: 1, height: '100%', marginLeft: 5, justifyContent: 'center' }}>
             <Item style={{ backgroundColor: 'white', paddingHorizontal: 10, borderRadius: 4 }}>
               <Icon name="search" style={{ fontSize: 20, paddingTop: 5 }} />
-              <Input placeholder="Search" />
+              <Input placeholder="¿Qué buscas?" />
             </Item>
           </View>
         </View>
 
         <Content style={{ backgroundColor: '#d5d5d6', marginTop: 70 }}>
-          <View style={{ height: 50, backgroundColor: 'white', flexDirection: 'row', paddingHorizontal: 5, alignItems: 'center', justifyContent: 'space-between' }}>
-            <Text>Hello, Varun Nath</Text>
-            <View style={{ flexDirection: 'row' }}>
-                <Text>Your Account </Text>
-                <Icon name="arrow-forward" style={{ fontSize: 18 }} />
-            </View>
-          </View>
-
           <Swiper autoplay={true} style={{ height: 100 }}>
             <View style={{ flex: 1 }}>
               <Image
@@ -88,7 +73,7 @@ export default class DashboardContainer extends Component {
           </Swiper>
           <Card style={{ marginLeft: 5, marginRight: 5 }}>
           <CardItem header style={{ borderBottomWidth: 1, borderBottomColor: '#dee0e2' }}>
-              <Text>Your Recommendations</Text>
+              <Text>Recomendaciones</Text>
           </CardItem>
           <RecommendedCardItem
             itemName="You can heal your life"
