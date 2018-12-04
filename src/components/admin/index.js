@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, Button, View, TextInput, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import firebase from '@firebase/app';
 import '@firebase/auth';
-import { Spinner } from '../common/Spinner';
 
 const DismissKeyboard = ({ children }) => (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -10,8 +9,8 @@ const DismissKeyboard = ({ children }) => (
     </TouchableWithoutFeedback>
   );
   
-class LoginForm extends Component {
-    state = { email: '', password: '', error: '', loading: false };
+class AdminComponent extends Component {
+    state = { titulo: '', color: '', talla: '', precio: '', url: '' };
 
     onButtonPress() {
         const { email, password } = this.state;
@@ -23,29 +22,6 @@ class LoginForm extends Component {
         .catch(this.onLoginFail.bind(this));
     }
 
-    onLoginFail() {
-        this.setState({ error: 'Credenciales incorrectas', loading: false });
-    }
-
-    onLoginSuccess() {
-        this.setState({ 
-            email: '',
-            password: '',
-            loading: false,
-            error: ''
-        });
-    }
-
-    renderButton() {
-        // if (this.state.loading) {
-        //     return <Spinner size="small" />;
-        // }
-        
-        return (
-            <Button style={styles.buttonText} title='Log in' onPress={this.onButtonPress.bind(this)} />
-        );
-    }
-
     render() {
         const { container, containerInputs, errorTextStyle, input, buttonContainer } = styles;
         return (
@@ -54,25 +30,39 @@ class LoginForm extends Component {
                 <View style={containerInputs}>
                     <TextInput
                         style={input}
-                        placeholder="user@email.com"
-                        value={this.state.email}
-                        onChangeText={email => this.setState({ email })}
+                        placeholder="Titulo"
+                        value={this.state.titulo}
+                        onChangeText={titulo => this.setState({ titulo })}
                     />
                     <TextInput
-                        secureTextEntry
                         style={input}
-                        placeholder="********"
-                        value={this.state.password}
-                        onChangeText={password => this.setState({ password })}
+                        placeholder="Color"
+                        value={this.state.color}
+                        onChangeText={color => this.setState({ color })}
+                    />
+                    <TextInput
+                        style={input}
+                        placeholder="Talla"
+                        value={this.state.talla}
+                        onChangeText={talla => this.setState({ talla })}
+                    />
+
+                    <TextInput
+                        style={input}
+                        placeholder="Precio"
+                        value={this.state.precio}
+                        onChangeText={precio => this.setState({ precio })}
+                    />
+                    <TextInput
+                        style={input}
+                        placeholder="url"
+                        value={this.state.url}
+                        onChangeText={url => this.setState({ url })}
                     />
                 </View>
 
-                <Text style={errorTextStyle}>
-                    {this.state.error}
-                </Text>
-
                 <View style={buttonContainer}>
-                    {this.renderButton()}
+                    <Button style={styles.buttonText} title='Log in' onPress={this.onButtonPress.bind(this)} />
                 </View>
             </View>
             </DismissKeyboard>
@@ -114,4 +104,4 @@ const styles = {
       },
 };
 
-export default LoginForm;
+export default AdminComponent;

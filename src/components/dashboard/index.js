@@ -32,28 +32,20 @@ class DashboardComponent extends Component {
             <Text style={textStyle}>Lo más vendido</Text>
         </View>
         <RecommendedCardItem
-          itemName='You can heal your life'
-          itemCreator='Louise Hay'
-          itemPrice='$10'
-          savings='2.5'
-          imageUri={require('../../images/recommended_1.jpg')}
+          itemName='Playera Hachas'
+          itemColor='Negra'
+          itemPrice='$150'
+          itemSize='M'
+          imageUri={require('../../images/axeblack.png')}
           rating={5}
         />
         <RecommendedCardItem
-          itemName='Uncharted 4'
-          itemCreator='Sony'
-          itemPrice='$19.99'
-          savings='17'
-          imageUri={require('../../images/recommended_2.jpg')}
+          itemName='Playera Medusa'
+          itemColor='Blanca'
+          itemPrice='$150'
+          itemSize='M'
+          imageUri={require('../../images/medusashirt.png')}
           rating={5}
-        />
-        <RecommendedCardItem
-          itemName='Ea UFC 3'
-          itemCreator='Ea Sports'
-          itemPrice='$44'
-          savings='6'
-          imageUri={require('../../images/recommended_3.jpg')}
-          rating={3}
         />
       </Card>
     );
