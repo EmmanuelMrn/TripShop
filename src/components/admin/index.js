@@ -78,7 +78,6 @@ const styles = {
     },
     container: {
         justifyContent: 'center',
-        paddingTop: '30%',
     },
     containerInputs: {
         backgroundColor: '#fff',

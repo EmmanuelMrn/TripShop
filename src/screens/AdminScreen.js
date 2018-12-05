@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 //import * as firebase from 'firebase';
 import firebase from '@firebase/app';
 import LoginForm from '../components/login';
@@ -7,21 +7,18 @@ import HeaderComponent from '../components/header';
 import AdminComponent from '../components/admin';
 import Spinner from '../components/common/Spinner';
 
+const styles = StyleSheet.create({
+    buttonLogOut: {
+        marginTop: 10,
+    },
+});
+
 class AdminContainer extends Component {
     state = {
         loggedIn: null
     };
 
     componentWillMount() {
-        firebase.initializeApp({
-            apiKey: 'AIzaSyCcLmlNKTCehAYCqUtId5yPmh3w2MVSQaM',
-            authDomain: 'authreactnative-75113.firebaseapp.com',
-            databaseURL: 'https://authreactnative-75113.firebaseio.com',
-            projectId: 'authreactnative-75113',
-            storageBucket: 'authreactnative-75113.appspot.com',
-            messagingSenderId: '93985325380'
-        });
-
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({ loggedIn: true });
@@ -32,12 +29,13 @@ class AdminContainer extends Component {
     }
 
     renderContent() {
+        const { buttonLogOut } = styles;
         switch (this.state.loggedIn) {
           case true:
             return (
                 <View>
                     <AdminComponent />
-                    <Button title="Log out" onPress={() => firebase.auth().signOut()} />
+                    <Button title="Log out" style={buttonLogOut} onPress={() => firebase.auth().signOut()} />
                 </View>
             );
           case false:
