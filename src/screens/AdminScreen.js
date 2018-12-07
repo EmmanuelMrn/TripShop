@@ -8,9 +8,21 @@ import AdminComponent from '../components/admin';
 import Spinner from '../components/common/Spinner';
 
 const styles = StyleSheet.create({
-    buttonLogOut: {
-        marginTop: 10,
+    container: {
+        
     },
+    buttonLogOut: {
+        color: '#fff',
+        fontWeight: '900',
+        fontSize: 14,
+        padding: 8,
+        backgroundColor: '#607D8B',
+    },
+    buttonContainer: {
+        paddingTop: 10,
+        marginHorizontal: 35,
+        bottom: 0,
+      },
 });
 
 class AdminContainer extends Component {
@@ -29,13 +41,15 @@ class AdminContainer extends Component {
     }
 
     renderContent() {
-        const { buttonLogOut } = styles;
+        const { container, buttonLogOut, buttonContainer } = styles;
         switch (this.state.loggedIn) {
           case true:
             return (
-                <View>
+                <View style={container}>
                     <AdminComponent />
-                    <Button title="Log out" style={buttonLogOut} onPress={() => firebase.auth().signOut()} />
+                    <View style={buttonContainer}>
+                        <Button title="Log out" style={buttonLogOut} onPress={() => firebase.auth().signOut()} />
+                    </View>
                 </View>
             );
           case false:

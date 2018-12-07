@@ -13,3 +13,7 @@ export default class ItemContainer extends Component {
     );
   }
 }
+
+// firebase.database().ref('playeras/LT3ZtplbQvvhcRMc9PJ').update({
+//     cart: true
+//   });
