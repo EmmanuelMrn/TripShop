@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import { Card } from 'native-base';
+import firebase from '@firebase/app';
+import 'firebase/database';
 import RecommendedCardItem from '../../components/cardItem';
 
 const styles = StyleSheet.create({
@@ -24,6 +26,21 @@ const styles = StyleSheet.create({
 
   
 class DashboardComponent extends Component {
+  state = {
+    tituloPlayera: '',
+    precioPlayera: '',
+    colorPlayera: '',
+  };
+
+  componentDidMount() {
+    firebase.database().ref('playeras/').on('child_added', function(snapshot) {
+      var data = snapshot.val();
+      this.state.tituloPlayera = data.title;
+      this.state.precioPlayera = data.price;
+      this.state.colorPlayera = data.col;
+    });
+  }
+
   render() {
     const { cardStyle, cardItemStyle, textStyle } = styles;
     return (
@@ -32,19 +49,11 @@ class DashboardComponent extends Component {
             <Text style={textStyle}>Lo más vendido</Text>
         </View>
         <RecommendedCardItem
-          itemName='Playera Hachas'
-          itemColor='Negra'
-          itemPrice='$150'
+          itemName={this.state.tituloPlayera}
+          itemColor={this.state.colorPlayera}
+          itemPrice={this.state.precioPlayera}
           itemSize='M'
           imageUri={require('../../images/axeblack.png')}
-          rating={5}
-        />
-        <RecommendedCardItem
-          itemName='Playera Medusa'
-          itemColor='Blanca'
-          itemPrice='$150'
-          itemSize='M'
-          imageUri={require('../../images/medusashirt.png')}
           rating={5}
         />
       </Card>

@@ -3,6 +3,8 @@ import firebase from '@firebase/app';
 import SplashScreen from 'react-native-splash-screen';
 import Navigator from './Navigator';
 
+//console.disableYellowBox = true;
+
 export default class App extends React.Component {
   componentWillMount() {
     firebase.initializeApp({
@@ -25,3 +27,4 @@ export default class App extends React.Component {
     );
   }
 }
+
