@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import HeaderComponent from '../components/header';
 
-export default class ItemContainer extends Component {
+export default class ItemContainer extends Component<Props> {
    render() {
     return (
         <View>
@@ -14,6 +14,6 @@ export default class ItemContainer extends Component {
   }
 }
 
-// firebase.database().ref('playeras/LT3ZtplbQvvhcRMc9PJ').update({
+// firebase.database().ref('playeras/').child('LT3ZtplbQvvhcRMc9PJ')update({
 //     cart: true
 //   });

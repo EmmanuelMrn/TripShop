@@ -3,7 +3,7 @@ import { Text, StyleSheet, View } from 'react-native';
 import { Card } from 'native-base';
 import firebase from '@firebase/app';
 import 'firebase/database';
-import RecommendedCardItem from '../../components/cardItem';
+import ItemComponent from '../common/ItemComponent';
 
 const styles = StyleSheet.create({
     cardStyle: {
@@ -22,6 +22,11 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
     },
+    noItemsText: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: 'black'
+    },
   });
 
   
@@ -30,32 +35,30 @@ class DashboardComponent extends Component {
     tituloPlayera: '',
     precioPlayera: '',
     colorPlayera: '',
+    items: []
   };
 
   componentDidMount() {
-    firebase.database().ref('playeras/').on('child_added', function(snapshot) {
-      var data = snapshot.val();
-      this.state.tituloPlayera = data.title;
-      this.state.precioPlayera = data.price;
-      this.state.colorPlayera = data.col;
+    firebase.database().ref('playeras').on('value', (snapshot) => {
+      let data = snapshot.val();
+      let items = Object.values(data);
+      this.setState({ items });
+      console.log(this.state.items);
     });
   }
 
   render() {
-    const { cardStyle, cardItemStyle, textStyle } = styles;
+    const { cardStyle, cardItemStyle, textStyle, noItemsText } = styles;
     return (
       <Card style={cardStyle}>
         <View header style={cardItemStyle}>
             <Text style={textStyle}>Lo más vendido</Text>
         </View>
-        <RecommendedCardItem
-          itemName={this.state.tituloPlayera}
-          itemColor={this.state.colorPlayera}
-          itemPrice={this.state.precioPlayera}
-          itemSize='M'
-          imageUri={require('../../images/axeblack.png')}
-          rating={5}
-        />
+        {
+          this.state.items.length > 0
+          ? <ItemComponent items={this.state.items} />
+          : <Text style={noItemsText}>No items</Text>
+      }
       </Card>
     );
   }

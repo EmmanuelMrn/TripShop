@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import firebase from '@firebase/app';
+import 'firebase/database';
 import { StyleSheet, StatusBar, Image, View, Text } from 'react-native';
 import { Header, Left, Icon, Right } from 'native-base';
 
@@ -37,12 +39,20 @@ const styles = StyleSheet.create({
 
 export default class CartContainer extends Component {
     state = {
-        playeras: []
+        playeras: [],
+        items: [],
     }
 
-    componentWillMount() {
-        axios.get('https://rallycoding.herokuapp.com/api/music_albums')
-        .then(response => this.setState({ playeras: response.data }));
+     componentDidMount() {
+        //  axios.get('https://rallycoding.herokuapp.com/api/music_albums')
+        //  .then(response => this.setState({ playeras: response.data }));
+
+        firebase.database().ref('playeras').on('value', (snapshot) => {
+            let data = snapshot.val();
+            let items = Object.values(data);
+            this.setState({ items });
+            console.log(this.state.items);
+          });       
     }
 
    render() {

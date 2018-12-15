@@ -3,14 +3,19 @@ import {
   View,
   Text,
   StyleSheet,
-  Image
+  Image,
+  ToastAndroid,
 } from 'react-native';
+import firebase from '@firebase/app';
+import 'firebase/database';
 import { CardItem, Right } from 'native-base';
 import StarRating from 'react-native-star-rating';
+import FAicon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
     rightStyle: {
         flex: 1,
+        flexDirection: 'column',
         alignItems: 'flex-start',
         height: 90,
         paddingHorizontal: 20,
@@ -36,6 +41,37 @@ const styles = StyleSheet.create({
   });
 
 class RecommendedCardItem extends Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          message: '',
+          messages: [],
+        };
+    
+        this.favorites = this.favorites.bind(this);
+      }
+
+favorites() {
+    var title = 'Playera Vikingo';
+    var price = 150;
+    var col = 'Negra';
+    var cart = true;
+    var favorite = false;
+    
+      firebase.database().ref('playeras/').child('LT3ZtplbQvvhcRMc9PJ')
+          .push({ title, price, col, cart, favorite });
+
+    // firebase.database().ref('playeras/LT3_a8P5vCZtOvJbzQp').update({
+    //     cart: true
+    // });
+
+    // firebase.database().ref('playeras/LTh3c9P4kbwOiE1LdUc').update({
+    //     cart: true
+    // });
+
+    ToastAndroid.show('Añadido al carrito!', ToastAndroid.SHORT);
+}
  render() {
   const { imageStyle, rightStyle, textItemColor, textItemPrice, textItemSize } = styles;
     return (
@@ -44,6 +80,7 @@ class RecommendedCardItem extends Component {
                 <Image style={imageStyle} source={this.props.imageUri} />
             </View>
             <Right style={rightStyle}>
+                <View style={{ flex: 0 }}>
                 <Text>{this.props.itemName}</Text>
                 <Text style={textItemColor}>{this.props.itemColor}</Text>
                 <Text style={textItemPrice}>{this.props.itemPrice}</Text>
@@ -59,6 +96,9 @@ class RecommendedCardItem extends Component {
                     fullStarColor='orange'
                     emptyStarColor='orange'
                 />
+
+                <FAicon style={{ flex: 0 }} name="cart-plus" size={20} color="green" onPress={this.favorites} />
+                </View>
             </Right>
         </CardItem>
     );

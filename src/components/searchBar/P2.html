@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>P2 web EMrn</title>
+
+  <link rel="stylesheet" type="text/css" href="styles/app.css">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
+
+  <!-- Alertify -->
+  <link rel="stylesheet" href="styles/alertifyjs/css/alertify.css">
+  <link rel="stylesheet" href="styles/alertifyjs/css/themes/default.css">
+  <script src="styles/alertifyjs/alertify.js"></script>
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+</head>
+<body >
+    <header>
+      <nav class="navbar-dark static-top header">
+      <h1 class="text-white h1">Practica 2: Registro</h1>
+    </header> 
+
+    <div class="container animated fadeInUp">
+      <div class="row">
+        <div class="col-md-4">
+            <div id="divCaptura" class="forma-captura">
+              <h4>Capturar alumno: </h4>
+              <label>Nombre: </label>
+              <input type="text" placeholder="Nombre del alumno" id="nombre">
+              <br>
+              <label>Matricula: </label>
+              <input type="number" placeholder="Matricula" pattern="[0-9]{0,12}$" id="matricula" min="0">
+              <br><br>
+              <button class="btn btn-success float-right" onclick="validar()" id="boton">Registrar alumno</button>
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+          <table id="tabla" class="table">
+            <thead>
+              <tr>
+                  <th>Id </th>
+                  <th>Nombre </th>
+                  <th>Matricula </th>
+                  <th>Opcion</th>
+              </tr>
+            </thead>
+            <tbody>    
+            </tbody>
+          </table>
+        </div>
+        <br>
+      </div>
+      <button class="btn btn-outline-success float-right" onclick="verAlumnos()" id="btnAlumnos">Ver alumnos</button>
+      <button class="btn btn-outline-danger float-right" onclick="limpiarTabla()" id="btnClean">Limpiar tabla</button>
+    </div>
+    
+           
+    <!-- Scripts JS -->
+    <script type="text/javascript" src="scripts/app.js"></script>
+    
+
+    <footer class="navbar-dark footer">
+      <h5 class="text-white h5">Creada por Emmanuel Moran</h5>
+    </footer>
+</body>
+</html>
